@@ -9,9 +9,14 @@ const Gameboard = (() => {
 
     // Set X/O into the specified position
     const setPlayerMark = (index, mark) => {
+        // Validate cell availability
         if (board[index] === "") {
             board[index] = mark;
-        };
+            return true;
+        } else {
+            console.log("Cell already taken! Try again.");
+            return false;
+        }
     };
 
     // Board reset routine
@@ -19,11 +24,23 @@ const Gameboard = (() => {
         board = [ "", "", "", "", "", "", "", "", "" ];
     };
 
+    // Draw the board in console
+    const drawGameBoard = () => {
+        console.log(`
+            ${board[0]} | ${board[1]} | ${board[2]}
+            -----------
+            ${board[3]} | ${board[4]} | ${board[5]}
+            -----------
+            ${board[6]} | ${board[7]} | ${board[8]}
+        `);
+    }
+
     // Module output values
     return {
         getBoardState,
         setPlayerMark,
-        resetBoardState
+        resetBoardState,
+        drawGameBoard,
     };
 
 })();
