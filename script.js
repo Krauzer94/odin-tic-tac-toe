@@ -37,10 +37,14 @@ const GameController = (() => {
     ];
 
     // Distinguish player turn
-    let mainPlayer = players[0];
+    let mainPlayerIndex = 0;
 
     // Initial game status
     let gameOver = false;
+
+    // Player round validation
+    const getCurrentPlayer = () => players[mainPlayerIndex];
+    const switchPlayer = () => { mainPlayerIndex = 1 - mainPlayerIndex; };
 
     // Check for endgame conditions
     const checkGameStatus = (board) => {
@@ -55,14 +59,21 @@ const GameController = (() => {
     for (const pattern of winPatterns) {
         const [a, b, c] = pattern;
         if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-            return `${mainPlayer.name} wins!`;
+            const winnerMark = board[a];
+            const winnerPlayer = players.find(p => p.mark === winnerMark);
+            gameOver = true;
+
+            // Announces winner
+            return `${winnerPlayer.name} wins!`;
         }
     }
 
     // Checks for tie condition
     if (board.every(cell => cell !== "")) {
+        gameOver = true;
         return "It's a tie!";
     }
 
-    // WIP: Switch player turns
+    // Game not finished
+    return null;
 })();
