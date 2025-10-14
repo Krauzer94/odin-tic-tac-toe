@@ -70,29 +70,29 @@ const GameController = (() => {
             [0, 3, 6], [1, 4, 7], [2, 5, 8], // Vertical
             [0, 4, 8], [2, 4, 6]             // Diagonal
         ];
-    }
 
-    // Validates win conditions
-    for (const pattern of winPatterns) {
-        const [a, b, c] = pattern;
-        if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-            const winnerMark = board[a];
-            const winnerPlayer = players.find(p => p.mark === winnerMark);
-            gameOver = true;
+        // Validates win conditions
+        for (const pattern of winPatterns) {
+            const [a, b, c] = pattern;
+            if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+                const winnerMark = board[a];
+                const winnerPlayer = players.find(p => p.mark === winnerMark);
+                gameOver = true;
 
-            // Announces winner
-            return `${winnerPlayer.name} wins!`;
+                // Announces winner
+                return `${winnerPlayer.name} wins!`;
+            }
         }
-    }
 
-    // Checks for tie condition
-    if (board.every(cell => cell !== "")) {
-        gameOver = true;
-        return "It's a tie!";
-    }
+        // Checks for tie condition
+        if (board.every(cell => cell !== "")) {
+            gameOver = true;
+            return "It's a tie!";
+        }
 
-    // Round continuation
-    return null;
+        // Round continuation
+        return null;
+    };
 
     // Player round processing
     const playGame = () => {
@@ -104,17 +104,43 @@ const GameController = (() => {
         // Visualize initial board
         Gameboard.drawGameBoard();
 
-        // Ensure game continuation
+        // WIP: Ensure game continuation
+        // Obs: infinite loop, needs rework
         while (!gameOver) {
             const player = getCurrentPlayer();
-            let move = console.log(`\n${player.name} (${player.mark}): chose a cell (0~8)\n`);
+            let move = prompt(`\n${player.name} (${player.mark}): chose a cell (0~8)\n`);
 
-            // Handle invalid inputs
+            // Invalid input handling
             const index = parseInt(move);
             if (isNaN(index) || index < 0 || index > 8) {
                 console.log(`\nInvalid input! (0-8 only)\n`);
                 continue;
             }
-        };
+
+            // Valid input handling
+            const validInput = Gameboard.setPlayerMark(index, player.mark);
+            if (!validInput) continue;
+            Gameboard.printBoard();
+
+            // Evaluate game status
+            const status = checkGameStatus(Gameboard.getBoardState());
+            if (status) {
+                console.log(`\nGame status: ${status}\n`);
+                gameOver = true;
+                break;
+            }
+
+            // Alternate players
+            switchPlayer();
+        }
+
+        // Announce end of game
+        console.log(`\nGame over!\n`);
     };
+
+    // Module output
+    return { playGame };
 })();
+
+// // Start the game
+// GameController.playGame();
