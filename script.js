@@ -91,6 +91,30 @@ const GameController = (() => {
         return "It's a tie!";
     }
 
-    // Game not finished
+    // Round continuation
     return null;
+
+    // Player round processing
+    const playGame = () => {
+        // Refresh round status
+        Gameboard.resetBoardState();
+        gameOver = false;
+        mainPlayerIndex = 0;
+
+        // Visualize initial board
+        Gameboard.drawGameBoard();
+
+        // Ensure game continuation
+        while (!gameOver) {
+            const player = getCurrentPlayer();
+            let move = console.log(`\n${player.name} (${player.mark}): chose a cell (0~8)\n`);
+
+            // Handle invalid inputs
+            const index = parseInt(move);
+            if (isNaN(index) || index < 0 || index > 8) {
+                console.log(`\nInvalid input! (0-8 only)\n`);
+                continue;
+            }
+        };
+    };
 })();
