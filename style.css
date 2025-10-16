@@ -12,4 +12,41 @@ body {
   background-color: #FAF4ED;
   margin: 0;
   padding: 0;
+  color: orange;
+}
+
+/* Centering the content */
+.general-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Styling the heading */
+h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+/* Styling the game board */
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  gap: 5px;
+  margin-bottom: 1rem;
+}
+
+/* Styling each cell */
+.board-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  background-color: #808080;
+  border: 2px solid #444;
+  cursor: pointer;
 }
