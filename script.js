@@ -147,5 +147,5 @@ const GameController = (() => {
     return { playGame };
 })();
 
-// Start the game
-GameController.playGame();
+// // Start the game
+// GameController.playGame();
