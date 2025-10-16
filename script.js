@@ -100,9 +100,12 @@ const GameController = (() => {
         Gameboard.resetBoardState();
         gameOver = false;
         mainPlayerIndex = 0;
+        hasDrawnBefore = false;
 
-        // Visualize initial board
+        // Draw initial board once
+        console.clear();
         Gameboard.drawGameBoard();
+        hasDrawnBefore = true;
 
         // Ensure game continuation
         while (!gameOver) {
@@ -119,6 +122,9 @@ const GameController = (() => {
             // Valid input handling
             const validInput = Gameboard.setPlayerMark(index, player.mark);
             if (!validInput) continue;
+
+            // Clear console and redraw board
+            if (hasDrawnBefore) console.clear();
             Gameboard.drawGameBoard();
 
             // Evaluate game status
