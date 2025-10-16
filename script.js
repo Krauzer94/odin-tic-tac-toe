@@ -14,7 +14,7 @@ const Gameboard = (() => {
             board[index] = mark;
             return true;
         } else {
-            console.log("Cell already taken! Try again.");
+            alert("Cell already taken! Try again.");
             return false;
         }
     };
@@ -113,7 +113,7 @@ const GameController = (() => {
             // Invalid input handling
             const index = parseInt(move);
             if (isNaN(index) || index < 0 || index > 8) {
-                console.log(`\nInvalid input! (0-8 only)\n`);
+                alert(`Invalid input! (0-8 only)`);
                 continue;
             }
 
@@ -135,7 +135,7 @@ const GameController = (() => {
         }
 
         // Announce end of game
-        console.log(`\nGame over!\n`);
+        alert(`Game over!`);
     };
 
     // Module output
