@@ -120,7 +120,7 @@ const GameController = (() => {
             // Valid input handling
             const validInput = Gameboard.setPlayerMark(index, player.mark);
             if (!validInput) continue;
-            Gameboard.printBoard();
+            Gameboard.drawGameBoard();
 
             // Evaluate game status
             const status = checkGameStatus(Gameboard.getBoardState());
@@ -142,5 +142,5 @@ const GameController = (() => {
     return { playGame };
 })();
 
-// // Start the game
-// GameController.playGame();
+// Start the game
+GameController.playGame();
