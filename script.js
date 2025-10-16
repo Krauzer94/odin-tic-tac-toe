@@ -104,8 +104,7 @@ const GameController = (() => {
         // Visualize initial board
         Gameboard.drawGameBoard();
 
-        // WIP: Ensure game continuation
-        // Obs: infinite loop, needs rework
+        // Ensure game continuation
         while (!gameOver) {
             const player = getCurrentPlayer();
             let move = prompt(`\n${player.name} (${player.mark}): chose a cell (0~8)\n`);
