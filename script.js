@@ -111,6 +111,23 @@ const GameController = (() => {
         }
     };
 
+    // Show player switch message
+    const displayTurnMessage = () => {
+        const statusDisplay = document.querySelector(".status");
+        const player = getCurrentPlayer(0);
+        statusDisplay.textContent = `${player.name}'s turn (${player.mark})`;
+    };
+
+    // Show endgame status
+    const displayEndStatus = (result) => {
+        if (result === "tie") {
+            statusDisplay.textContent = "It's a tie!";
+        } else {
+            const winner = players.find(player => player.mark === result);
+            statusDisplay.textContent = `${winner.name} wins!`;
+        }
+    };
+
     // Player round processing
     const playGame = () => {
         // Refresh round status
