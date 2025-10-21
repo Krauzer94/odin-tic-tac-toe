@@ -18,6 +18,34 @@ body {
   color: #EEEEEC;
 }
 
+/* Header fixed at the top */
+.page-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #3b3b3b;
+  color: #eeeeec;
+  text-align: center;
+  padding: 1rem 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+  z-index: 100;
+}
+
+/* Footer fixed at the bottom */
+.page-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #3b3b3b;
+  color: #babdb6;
+  text-align: center;
+  padding: 24px 0px 24px 0px;
+  font-size: 1rem;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.4);
+}
+
 /* Centering the content */
 .general-container {
   background-color: #3B3B3B;
