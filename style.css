@@ -3,7 +3,6 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  background-color: #282828;
 }
 
 /* Base page styling  */
@@ -51,21 +50,28 @@ body {
 }
 
 .board-cell:hover {
-  background-color: #6e6e6e;
+  background-color: #6E6E6E;
+}
+
+/* Game status: ✖️/⭕ turn */
+.status {
+  font-size: 1.25rem;
+  margin-top: 10px;
 }
 
 /* Styling restart button */
 .restart-btn {
   margin-top: 1rem;
-  background-color: #4a90e2;
-  color: white;
+  background-color: #729FCF;
+  color: #2E3436;
   border: none;
   padding: 10px 20px;
   font-size: 1rem;
   border-radius: 6px;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .restart-btn:hover {
-  background-color: #357ab8;
+  background-color: #357AB8;
 }
