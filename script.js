@@ -102,6 +102,7 @@ const GameController = (() => {
         if (!validInput) return;
 
         // Evaluate game status
+        const status = checkGameStatus(Gameboard.getBoardState());
         if (status) {
             gameOver = true;
             displayEndStatus(status);
@@ -145,7 +146,7 @@ const GameController = (() => {
         });
 
         // Handle game restart event
-        const restartButton = document.querySelector(".restart-button");
+        const restartButton = document.querySelector(".restart-btn");
         restartButton.addEventListener("click", restartGame);
 
         // Reset game if applicable
@@ -156,3 +157,6 @@ const GameController = (() => {
     // Module output
     return { playGame };
 })();
+
+// Initialize game on load
+GameController.playGame();
