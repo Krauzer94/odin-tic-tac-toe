@@ -31,6 +31,11 @@ h1 {
   margin-bottom: 1rem;
 }
 
+/* Game status text */
+.status {
+  margin-bottom: 1rem;
+}
+
 /* Styling the game board */
 .game-board {
   display: grid;
