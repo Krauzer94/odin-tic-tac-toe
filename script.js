@@ -113,7 +113,7 @@ const GameController = (() => {
     // Show player switch message
     const displayTurnMessage = () => {
         const statusDisplay = document.querySelector(".status");
-        const player = getCurrentPlayer(0);
+        const player = getCurrentPlayer();
         statusDisplay.textContent = `${player.name} turn`;
     };
 
