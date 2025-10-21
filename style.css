@@ -46,6 +46,14 @@ body {
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.4);
 }
 
+/* General text styling */
+h1 { font-family: "Consolas" }
+
+a {
+    color: #729FCF;
+    font-weight: 450;
+}
+
 /* Centering the content */
 .general-container {
   background-color: #3B3B3B;
