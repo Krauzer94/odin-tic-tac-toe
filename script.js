@@ -12,6 +12,9 @@ const Gameboard = (() => {
         // Validate cell availability
         if (board[index] === "") {
             board[index] = mark;
+
+            // Update board display
+            renderBoard();
             return true;
         } else {
             alert("Cell already taken! Try again.");
@@ -22,17 +25,15 @@ const Gameboard = (() => {
     // Board reset routine
     const resetBoardState = () => {
         board = [ "", "", "", "", "", "", "", "", "" ];
+        renderBoard();
     };
 
-    // Draw the board in console
-    const drawGameBoard = () => {
-        console.log(`
-${board[0] || " "} | ${board[1] || " "} | ${board[2] || " "}
----------
-${board[3] || " "} | ${board[4] || " "} | ${board[5] || " "}
----------
-${board[6] || " "} | ${board[7] || " "} | ${board[8] || " "}
-        `);
+    // Draw the board in the UI
+    const renderBoard = () => {
+        const cells = document.querySelectorAll(".board-cell");
+        cells.forEach((cell, index) => {
+            cell.textContent = board[index];
+        });
     };
 
     // Module output values
@@ -40,7 +41,7 @@ ${board[6] || " "} | ${board[7] || " "} | ${board[8] || " "}
         getBoardState,
         setPlayerMark,
         resetBoardState,
-        drawGameBoard,
+        renderBoard,
     };
 
 })();
