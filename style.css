@@ -12,7 +12,7 @@ body {
   background-color: #FAF4ED;
   margin: 0;
   padding: 0;
-  color: orange;
+  color: white;
 }
 
 /* Centering the content */
@@ -27,7 +27,7 @@ body {
 
 /* Styling the heading */
 h1 {
-  font-size: 3rem;
+  font-size: 2rem;
   margin-bottom: 1rem;
 }
 
@@ -49,4 +49,20 @@ h1 {
   background-color: #808080;
   border: 2px solid #444;
   cursor: pointer;
+}
+
+/* Styling restart button */
+.restart-btn {
+  margin-top: 1rem;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.restart-btn:hover {
+  background-color: #357ab8;
 }
