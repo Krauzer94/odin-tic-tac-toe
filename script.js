@@ -86,7 +86,8 @@ const GameController = (() => {
 
     // Mouse interaction handling
     const handleClick = (event) => {
-        if (gameOver = true) return;
+        // Ignore clicks if game ended
+        if (gameOver === true) return;
 
         // Identify clicked cell
         const cellIndex = parseInt(event.target.getAttribute("data-index"));
