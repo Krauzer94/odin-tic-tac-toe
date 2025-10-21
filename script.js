@@ -47,8 +47,8 @@ const Gameboard = (() => {
 const GameController = (() => {
     // Distinct player elements
     const players = [
-        { name: "Player 1", mark: "✖️" },
-        { name: "Player 2", mark: "⭕" }
+        { name: "✖️", mark: "✖️" },
+        { name: "⭕", mark: "⭕" }
     ];
 
     // Distinguish player turn
@@ -114,7 +114,7 @@ const GameController = (() => {
     const displayTurnMessage = () => {
         const statusDisplay = document.querySelector(".status");
         const player = getCurrentPlayer(0);
-        statusDisplay.textContent = `${player.name}'s turn (${player.mark})`;
+        statusDisplay.textContent = `${player.name} turn`;
     };
 
     // Show endgame status
