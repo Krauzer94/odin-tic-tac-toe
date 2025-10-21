@@ -16,10 +16,8 @@ const Gameboard = (() => {
             // Update board display
             renderBoard();
             return true;
-        } else {
-            alert("Cell already taken! Try again.");
-            return false;
         }
+        return false;
     };
 
     // Board reset routine
@@ -36,14 +34,13 @@ const Gameboard = (() => {
         });
     };
 
-    // Module output values
+    // Expose module methods
     return {
         getBoardState,
         setPlayerMark,
         resetBoardState,
         renderBoard,
     };
-
 })();
 
 // Module to control game flow
@@ -62,7 +59,7 @@ const GameController = (() => {
 
     // Player round validation
     const getCurrentPlayer = () => players[mainPlayerIndex];
-    const switchPlayer = () => { mainPlayerIndex = 1 - mainPlayerIndex; };
+    const switchPlayer = () => { mainPlayerIndex = 1 - mainPlayerIndex };
 
     // Check for endgame conditions
     const checkGameStatus = (board) => {
@@ -121,6 +118,7 @@ const GameController = (() => {
 
     // Show endgame status
     const displayEndStatus = (result) => {
+        const statusDisplay = document.querySelector(".status");
         if (result === "tie") {
             statusDisplay.textContent = "It's a tie!";
         } else {
@@ -154,7 +152,7 @@ const GameController = (() => {
         displayTurnMessage();
     };
 
-    // Module output
+    // Expose module methods
     return { playGame };
 })();
 
