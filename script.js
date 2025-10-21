@@ -50,8 +50,8 @@ const Gameboard = (() => {
 const GameController = (() => {
     // Distinct player elements
     const players = [
-        { name: "Player 1", mark: "X" },
-        { name: "Player 2", mark: "O" }
+        { name: "Player 1", mark: "✖️" },
+        { name: "Player 2", mark: "⭕" }
     ];
 
     // Distinguish player turn
@@ -76,23 +76,39 @@ const GameController = (() => {
         for (const pattern of winPatterns) {
             const [a, b, c] = pattern;
             if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-                const winnerMark = board[a];
-                const winnerPlayer = players.find(p => p.mark === winnerMark);
-                gameOver = true;
-
-                // Announces winner
-                return `${winnerPlayer.name} wins!`;
+                return board[a];
             }
         }
 
         // Checks for tie condition
-        if (board.every(cell => cell !== "")) {
-            gameOver = true;
-            return "It's a tie!";
-        }
+        if (board.every((cell) => cell !== "")) return "tie";
 
         // Round continuation
         return null;
+    };
+
+    // Mouse interaction handling
+    const handleClick = (event) => {
+        if (gameOver = true) return;
+
+        // Identify clicked cell
+        const cellIndex = parseInt(event.target.getAttribute("data-index"));
+        const player = getCurrentPlayer();
+
+        // Attempt to set player mark
+        const validInput = Gameboard.setPlayerMark(cellIndex, player.mark);
+
+        // Ignore if already filled
+        if (!validInput) return;
+
+        // Evaluate game status
+        if (status) {
+            gameOver = true;
+            displayEndStatus(status);
+        } else {
+            switchPlayer();
+            displayTurnMessage();
+        }
     };
 
     // Player round processing
