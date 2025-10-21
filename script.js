@@ -128,58 +128,31 @@ const GameController = (() => {
         }
     };
 
-    // Player round processing
-    const playGame = () => {
-        // Refresh round status
+    // Game restart handling
+    const restartGame = () => {
         Gameboard.resetBoardState();
         gameOver = false;
         mainPlayerIndex = 0;
-        hasDrawnBefore = false;
+        displayTurnMessage();
+    };
 
-        // Draw initial board once
-        console.clear();
-        Gameboard.drawGameBoard();
-        hasDrawnBefore = true;
+    // Player round processing
+    const playGame = () => {
+        // Handle cell click events
+        const cells = document.querySelectorAll(".board-cell");
+        cells.forEach((cell) => {
+            cell.addEventListener("click", handleClick);
+        });
 
-        // Ensure game continuation
-        while (!gameOver) {
-            const player = getCurrentPlayer();
-            let move = prompt(`\n${player.name} (${player.mark}): chose a cell (0~8)\n`);
+        // Handle game restart event
+        const restartButton = document.querySelector(".restart-button");
+        restartButton.addEventListener("click", restartGame);
 
-            // Invalid input handling
-            const index = parseInt(move);
-            if (isNaN(index) || index < 0 || index > 8) {
-                alert(`Invalid input! (0-8 only)`);
-                continue;
-            }
-
-            // Valid input handling
-            const validInput = Gameboard.setPlayerMark(index, player.mark);
-            if (!validInput) continue;
-
-            // Clear console and redraw board
-            if (hasDrawnBefore) console.clear();
-            Gameboard.drawGameBoard();
-
-            // Evaluate game status
-            const status = checkGameStatus(Gameboard.getBoardState());
-            if (status) {
-                console.log(`\nGame status: ${status}\n`);
-                gameOver = true;
-                break;
-            }
-
-            // Alternate players
-            switchPlayer();
-        }
-
-        // Announce end of game
-        alert(`Game over!`);
+        // Reset game if applicable
+        Gameboard.renderBoard();
+        displayTurnMessage();
     };
 
     // Module output
     return { playGame };
 })();
-
-// // Start the game
-// GameController.playGame();
