@@ -175,6 +175,20 @@ const playerNameModal = (() => {
 
     // Auto open dialog
     namePlayerDialog.showModal();
+
+    // Handle info submission
+    confirmBtn.addEventListener("click", (event) => {
+        // Prevent premature page reloading
+        event.preventDefault();
+
+        // Process input values
+        const firstName = firstPlayerInput.value.trim();
+        const secondName = secondPlayerInput.value.trim();
+
+        // Save player names
+        playerNames.firstPlayerName = firstName;
+        playerNames.secondPlayerName = secondName;
+    });
 })();
 
 // Initialize game on load
