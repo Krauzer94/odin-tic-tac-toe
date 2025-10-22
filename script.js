@@ -197,6 +197,12 @@ const playerNameModal = (() => {
 
         // Close the modal
         namePlayerDialog.close();
+
+        // Show who starts
+        const statusDisplay = document.querySelector(".status");
+        if (statusDisplay) {
+            statusDisplay.textContent = `${playerNames.first} ✖️ vs ${playerNames.second} ⭕`;
+        }
     });
 })();
 
