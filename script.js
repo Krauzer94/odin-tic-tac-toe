@@ -185,9 +185,18 @@ const playerNameModal = (() => {
         const firstName = firstPlayerInput.value.trim();
         const secondName = secondPlayerInput.value.trim();
 
+        // Basic validation
+        if (!firstName || !secondName) {
+            alert("Please enter names for both players.");
+            return;
+        }
+
         // Save player names
         playerNames.firstPlayerName = firstName;
         playerNames.secondPlayerName = secondName;
+
+        // Close the modal
+        namePlayerDialog.close();
     });
 })();
 
