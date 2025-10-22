@@ -125,3 +125,21 @@ a {
   opacity: 0.75;
   z-index: -1;
 }
+
+/* Player naming dialog */
+.name-player-dialog {
+  border: none;
+  border-radius: 12px;
+  padding: 24px 32px;
+  background-color: #3B3B3B;
+  color: #EEEEEC;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+  text-align: center;
+  width: 300px;
+  max-width: 90%;
+}
+
+/* Dimm modal backdrop */
+.name-player-dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.65);
+}
