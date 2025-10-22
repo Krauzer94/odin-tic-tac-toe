@@ -31,6 +31,28 @@
         <button class="restart-btn">Restart Game</button>
     </main>
 
+    <!-- Player naming modal dialog -->
+    <dialog class="name-player-dialog" id="namePlayerDialog">
+        <form class="name-player-form">
+            <div class="name-player-fields">
+                <!-- First player -->
+                <div class="first-player-field">
+                    <label for="firstPlayerName">First player</label>
+                    <input id="firstPlayerName" name="firstPlayerName" type="text">
+                </div>
+                <!-- Second player -->
+                <div class="second-player-field">
+                    <label for="secondPlayerName">Second player</label>
+                    <input id="secondPlayerName" name="secondPlayerName" type="text">
+                </div>
+                <!-- Confirm button -->
+                <div class="name-player-btns-field">
+                    <button class="confirm-btn" id="confirmBtn" value="default">Confirm</button>
+                </div>
+            </div>
+        </form>
+    </dialog>
+
     <!-- Page Footer -->
     <footer class="page-footer">
         <p>Copyright ©2025 | <a href="https://github.com/Krauzer94/odin-tic-tac-toe">Krauzer94</a></p>
