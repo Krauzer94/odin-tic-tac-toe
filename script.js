@@ -157,5 +157,25 @@ const GameController = (() => {
     return { playGame };
 })();
 
+// Isolate modal behavior
+const playerNameModal = (() => {
+    // Main elements query
+    const namePlayerDialog = document.getElementById("namePlayerDialog");
+    const confirmBtn = document.getElementById("confirmBtn");
+
+    // Player name fields
+    const firstPlayerInput = document.getElementById("firstPlayerName");
+    const secondPlayerInput = document.getElementById("secondPlayerName");
+
+    // Store player names
+    const playerNames = {
+        firstPlayerName: "",
+        secondPlayerName: "",
+    };
+
+    // Auto open dialog
+    namePlayerDialog.showModal();
+})();
+
 // Initialize game on load
 GameController.playGame();
