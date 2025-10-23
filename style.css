@@ -151,3 +151,19 @@ a {
 .name-player-dialog::backdrop {
   background-color: rgba(0, 0, 0, 0.65);
 }
+
+/* Fields container */
+.name-player-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Dialog labels */
+.name-player-fields label {
+  display: block;
+  text-align: left;
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+  color: #babdb6;
+}
