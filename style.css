@@ -96,7 +96,7 @@ a {
 }
 
 /* Styling restart button */
-.restart-btn {
+.restart-btn, .confirm-btn {
   margin-top: 1rem;
   background-color: #729FCF;
   color: #2E3436;
