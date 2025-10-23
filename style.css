@@ -179,3 +179,10 @@ a {
   color: #EEEEEC;
   transition: border-color 0.2s ease, background-color 0.2s ease;
 }
+
+/* Input interaction styling */
+.name-player-fields input[type="text"]:focus {
+  border-color: #729FCF;
+  background-color: #626664;
+  outline: none;
+}
