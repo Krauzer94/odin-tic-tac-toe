@@ -45,10 +45,13 @@ const Gameboard = (() => {
 
 // Module to control game flow
 const GameController = (() => {
+    // Name players before starting
+    const { firstPlayerName, secondPlayerName } = playerNameModal.getNames();
+
     // Distinct player elements
     const players = [
-        { name: "✖️", mark: "✖️" },
-        { name: "⭕", mark: "⭕" }
+        { name: firstPlayerName, mark: "✖️" },
+        { name: secondPlayerName, mark: "⭕" }
     ];
 
     // Distinguish player turn
@@ -204,6 +207,11 @@ const playerNameModal = (() => {
             statusDisplay.textContent = `${playerNames.first} ✖️ vs ${playerNames.second} ⭕`;
         }
     });
+
+    // Expose player names
+    return {
+        getNames: () => playerNames
+    };
 })();
 
 // Initialize game on load
