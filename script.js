@@ -43,6 +43,60 @@ const Gameboard = (() => {
     };
 })();
 
+// Isolate modal behavior
+const playerNameModal = (() => {
+    // Main elements query
+    const namePlayerDialog = document.getElementById("namePlayerDialog");
+    const confirmBtn = document.getElementById("confirmBtn");
+
+    // Player name fields
+    const firstPlayerInput = document.getElementById("firstPlayerName");
+    const secondPlayerInput = document.getElementById("secondPlayerName");
+
+    // Store player names
+    const playerNames = {
+        firstPlayerName: "",
+        secondPlayerName: "",
+    };
+
+    // Auto open dialog
+    namePlayerDialog.showModal();
+
+    // Handle info submission
+    confirmBtn.addEventListener("click", (event) => {
+        // Prevent premature page reloading
+        event.preventDefault();
+
+        // Process input values
+        const firstName = firstPlayerInput.value.trim();
+        const secondName = secondPlayerInput.value.trim();
+
+        // Basic validation
+        if (!firstName || !secondName) {
+            alert("Please enter names for both players.");
+            return;
+        }
+
+        // Save player names
+        playerNames.firstPlayerName = firstName;
+        playerNames.secondPlayerName = secondName;
+
+        // Close the modal
+        namePlayerDialog.close();
+
+        // Show who starts
+        const statusDisplay = document.querySelector(".status");
+        if (statusDisplay) {
+            statusDisplay.textContent = `${playerNames.first} ✖️ vs ${playerNames.second} ⭕`;
+        }
+    });
+
+    // Expose player names
+    return {
+        getNames: () => playerNames
+    };
+})();
+
 // Module to control game flow
 const GameController = (() => {
     // Name players before starting
@@ -158,60 +212,6 @@ const GameController = (() => {
 
     // Expose module methods
     return { playGame };
-})();
-
-// Isolate modal behavior
-const playerNameModal = (() => {
-    // Main elements query
-    const namePlayerDialog = document.getElementById("namePlayerDialog");
-    const confirmBtn = document.getElementById("confirmBtn");
-
-    // Player name fields
-    const firstPlayerInput = document.getElementById("firstPlayerName");
-    const secondPlayerInput = document.getElementById("secondPlayerName");
-
-    // Store player names
-    const playerNames = {
-        firstPlayerName: "",
-        secondPlayerName: "",
-    };
-
-    // Auto open dialog
-    namePlayerDialog.showModal();
-
-    // Handle info submission
-    confirmBtn.addEventListener("click", (event) => {
-        // Prevent premature page reloading
-        event.preventDefault();
-
-        // Process input values
-        const firstName = firstPlayerInput.value.trim();
-        const secondName = secondPlayerInput.value.trim();
-
-        // Basic validation
-        if (!firstName || !secondName) {
-            alert("Please enter names for both players.");
-            return;
-        }
-
-        // Save player names
-        playerNames.firstPlayerName = firstName;
-        playerNames.secondPlayerName = secondName;
-
-        // Close the modal
-        namePlayerDialog.close();
-
-        // Show who starts
-        const statusDisplay = document.querySelector(".status");
-        if (statusDisplay) {
-            statusDisplay.textContent = `${playerNames.first} ✖️ vs ${playerNames.second} ⭕`;
-        }
-    });
-
-    // Expose player names
-    return {
-        getNames: () => playerNames
-    };
 })();
 
 // Initialize game on load
