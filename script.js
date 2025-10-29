@@ -84,35 +84,35 @@ const playerNameModal = (() => {
         // Close the modal
         namePlayerDialog.close();
 
-        // Show who starts
+        // Initial match info
         const statusDisplay = document.querySelector(".status");
         if (statusDisplay) {
-            statusDisplay.textContent = `${playerNames.first} ✖️ vs ${playerNames.second} ⭕`;
+            statusDisplay.textContent = `${playerNames.firstPlayerName} ✖️ vs ${playerNames.secondPlayerName} ⭕`;
         }
+
+        // Start the game board
+        GameController.playGame();
     });
 
     // Expose player names
-    return {
-        getNames: () => playerNames
-    };
+    return { getNames: () => playerNames };
 })();
 
 // Module to control game flow
 const GameController = (() => {
-    // Name players before starting
-    const { firstPlayerName, secondPlayerName } = playerNameModal.getNames();
-
-    // Distinct player elements
-    const players = [
-        { name: firstPlayerName, mark: "✖️" },
-        { name: secondPlayerName, mark: "⭕" }
-    ];
-
-    // Distinguish player turn
+    // Reset game state variables
+    let players = [];
     let mainPlayerIndex = 0;
-
-    // Initial game status
     let gameOver = false;
+
+    // Read player names
+    const initPlayers = () => {
+        const { firstPlayerName, secondPlayerName } = playerNameModal.getNames();
+        players = [
+            { name: firstPlayerName, mark: "✖️" },
+            { name: secondPlayerName, mark: "⭕" }
+        ];
+    };
 
     // Player round validation
     const getCurrentPlayer = () => players[mainPlayerIndex];
@@ -171,7 +171,7 @@ const GameController = (() => {
     const displayTurnMessage = () => {
         const statusDisplay = document.querySelector(".status");
         const player = getCurrentPlayer();
-        statusDisplay.textContent = `${player.name} turn`;
+        statusDisplay.textContent = `${player.name} turn ${player.mark}`;
     };
 
     // Show endgame status
@@ -180,8 +180,8 @@ const GameController = (() => {
         if (result === "tie") {
             statusDisplay.textContent = "It's a tie!";
         } else {
-            const winner = players.find(player => player.mark === result);
-            statusDisplay.textContent = `${winner.name} wins!`;
+            const winner = players.find(p => p.mark === result);
+            statusDisplay.textContent = `🥳 ${winner.name} wins! ${winner.mark}`;
         }
     };
 
@@ -195,6 +195,9 @@ const GameController = (() => {
 
     // Player round processing
     const playGame = () => {
+        // Name players before starting
+        initPlayers();
+
         // Handle cell click events
         const cells = document.querySelectorAll(".board-cell");
         cells.forEach((cell) => {
@@ -213,6 +216,3 @@ const GameController = (() => {
     // Expose module methods
     return { playGame };
 })();
-
-// Initialize game on load
-GameController.playGame();
