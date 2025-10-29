@@ -178,7 +178,7 @@ const GameController = (() => {
     const displayEndStatus = (result) => {
         const statusDisplay = document.querySelector(".status");
         if (result === "tie") {
-            statusDisplay.textContent = "It's a tie!";
+            statusDisplay.textContent = "😵 It's a tie! 😵";
         } else {
             const winner = players.find(p => p.mark === result);
             statusDisplay.textContent = `🥳 ${winner.name} wins! ${winner.mark}`;
